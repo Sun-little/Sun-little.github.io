@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Sun-little</title>
   
-  
+  <subtitle>学习、随笔、分享</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sun-little.github.io/"/>
-  <updated>2020-06-03T10:45:49.545Z</updated>
+  <updated>2020-06-05T09:43:58.228Z</updated>
   <id>https://sun-little.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
+    <title>泛型的使用</title>
     <link href="https://sun-little.github.io/posts/3eeb.html"/>
     <id>https://sun-little.github.io/posts/3eeb.html</id>
     <published>2020-06-03T02:27:45.800Z</published>
-    <updated>2020-06-03T10:45:49.545Z</updated>
+    <updated>2020-06-05T09:43:58.228Z</updated>
     
     <summary type="html">
     
@@ -29,13 +29,17 @@
       
         
         
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+          &lt;h4 id=&quot;泛型：&quot;&gt;&lt;a href=&quot;#泛型：&quot; class=&quot;headerlink&quot; title=&quot;泛型：&quot;&gt;&lt;/a&gt;泛型：&lt;/h4&gt;&lt;p&gt;​        泛指的类型，可以代表任意类的   可以在类的后面指定泛型 public class 类名
         
       
     
     </summary>
     
     
+      <category term="java" scheme="https://sun-little.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://sun-little.github.io/tags/java/"/>
     
   </entry>
   
