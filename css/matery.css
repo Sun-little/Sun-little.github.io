@@ -319,12 +319,14 @@ header nav .brand-span {
 
 header .brand-logo .logo-img {
     height: 45px;
+    border-radius: 6px;
     vertical-align: middle;
     padding-bottom: 6px;
 }
 
 header .brand-logo .logo-span {
     font-size: 2rem;
+    font-family: 'Comic Sans MS', cursive;
 }
 
 /*修改顶部 logo 的文字垂直对齐为 top，避免默认 middle 看起来偏下*/
@@ -409,7 +411,7 @@ header .side-nav .social-link {
     font-size: 1rem;
     color: #fff;
     border: 1px solid #fff;
-    background-color: transparent;
+    background-color: pink;
     border-radius: 30px;
     box-shadow: none;
 }
@@ -603,8 +605,7 @@ header .go-back i {
 }
 
 .bg-cover .title {
-    font-size: 3rem;
-    font-family: fantasy;
+    font-size: 4rem;
     line-height: 1.85em;
     margin-bottom: 20px;
     position: relative;
@@ -612,9 +613,10 @@ header .go-back i {
 
 .bg-cover .description {
     font-weight: 300;
+    font-family: 'Comic Sans MS', cursive;
     font-size: 1.25rem;
     line-height: 1.4em;
-    color: #eee;
+    color: #1e88e5;
 }
 
 .bg-cover .post-title {
@@ -726,6 +728,8 @@ header .go-back i {
 .dream {
     margin-top: 20px;
     margin-bottom: 40px;
+    border-radius: 8px;
+    
 }
 
 .dream .title,
@@ -2165,9 +2169,11 @@ footer .copy-right {
     }
     header .brand-logo .logo-span {
         font-size: 1rem;
+        font-family: 'Comic Sans MS', cursive;
     }
     .bg-cover .title {
         font-size: 3rem;
+        font-family: 'Comic Sans MS', cursive;
         font-weight: 700;
         line-height: 1.85em;
         margin-bottom: 20px;
@@ -2184,7 +2190,8 @@ footer .copy-right {
         font-size: 2rem;
     }
     .bg-cover .title {
-        font-size: 4rem;
+        font-size: 3rem;
+        font-family: 'Comic Sans MS', cursive;
         font-weight: 700;
         line-height: 1.85em;
         margin-bottom: 20px;
@@ -2206,10 +2213,12 @@ footer .copy-right {
 
     header .brand-logo .logo-span {
         font-size: 2rem;
+        font-family: 'Comic Sans MS', cursive;
     }
 
     .bg-cover .title {
-        font-size: 4rem;
+        font-size: 3rem;
+        font-family: 'Comic Sans MS', cursive;
         font-weight: 700;
         line-height: 1.85em;
         margin-bottom: 20px;
