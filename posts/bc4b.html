@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="泛型的使用, Sun-little">
+    <meta name="keywords" content="集合(List篇), Sun-little">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>泛型的使用 | Sun-little</title>
+    <title>集合(List篇) | Sun-little</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">泛型的使用</h1>
+                    <h1 class="description center-align post-title">集合(List篇)</h1>
                 </div>
             </div>
         </div>
@@ -442,6 +442,10 @@
                                 <span class="chip bg-color">随笔</span>
                             </a>
                         
+                            <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                                <span class="chip bg-color">面试</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -463,7 +467,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-03
+                    2020-07-17
                 </div>
                 
 
@@ -479,127 +483,81 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="泛型："><a href="#泛型：" class="headerlink" title="泛型："></a>泛型：</h4><p>​        泛指的类型，可以代表任意类的   可以在类的后面指定泛型 public class 类名 &lt;泛型&gt;</p>
-<p>​        在类上面定义了泛型后，可以在当前类中的任意位置使用当前泛型，可以在属性的类型，参数</p>
-<p>​        的类型，方法的返回值等等。</p>
-<p>​        当我们创建一个泛型类对象时，需要给泛型指定具体数据类型</p>
-<p>​        在创建对象时如果没有指定泛型的类型，那么泛型默认为Object类型</p>
-<p>​        类名  对象 = new 类名（）； –&gt;Object</p>
-<h4 id="？通配符可以再创建对象时使用，用于表示任意的类型"><a href="#？通配符可以再创建对象时使用，用于表示任意的类型" class="headerlink" title="？通配符可以再创建对象时使用，用于表示任意的类型"></a>？通配符可以再创建对象时使用，用于表示任意的类型</h4><p>​    可以使用通配符设置泛型的范围</p>
-<p>​    设置上限  ？extends类  表示使用时必须指定一个父类的子类类型或者父类本身</p>
-<p>​    设置下限  ？super 类  表示使用时必须指定一个类的时指定类的父类，或者时类本身</p>
-<p>​    在声明对象时可以使用范围限制或通配符，但在new出对象是一定要指定类型</p>
-<p>​    通配符的写法可以使用在方法的参数，方法的返回值，已经声明的变量</p>
-<h4 id="3、泛型的应用"><a href="#3、泛型的应用" class="headerlink" title="3、泛型的应用"></a>3、泛型的应用</h4><p>​    1.在泛型中使用，可以直接使用任意的泛型所表示的单词（T,K）public class 类&lt;T,K&gt;</p>
-<p>​        那么在类中可以直接使用T或K类型</p>
-<p>​    2.在其他类中使用泛型类，那么主要就是创建泛型对象</p>
-<p>​        a、不指定泛型 类 变量 =new 类（）；泛型默认为OBject</p>
-<p>​        b、指定类型 类&lt;具体的类型，具体的练习&gt; 对象=new 类&lt;具体的类型，具体的练习&gt;</p>
-<p>​        c、指定任意类型 类&lt;？&gt;对象=new 类&lt;具体的类型&gt;（）；</p>
-<p>​        d、指定类型的范围-上限 类&lt;？extends 类&gt;对象 =new 类&lt;具体的类型&gt;（）；</p>
-<p>代码在类名后面多出了 &lt;T1, T2&gt;，T1, T2 是自定义的标识符，也是参数，用来传递数据的类型，而不是数据的值，我们称之为类型参数。在泛型中，不但数据的值可以通过参数传递，数据的类型也可以通过参数传递。T1, T2 只是数据类型的占位符，运行时会被替换为真正的数据类型。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Book</span><span class="token operator">&lt;</span>T1，T2<span class="token operator">></span><span class="token punctuation">{</span>
-    T1 a<span class="token punctuation">;</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pprr</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span>T1 t<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Pet a<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Pet</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Book <span class="token operator">&lt;</span>String<span class="token operator">></span> bos<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Book</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>传值参数（我们通常所说的参数）由小括号包围，如 (int x, double y)，类型参数（泛型参数）由尖括号包围，多个参数由逗号分隔，如 <t> 或 &lt;T, E&gt;。</t></p>
-<p>类型参数需要在类名后面给出。一旦给出了类型参数，就可以在类中使用了。类型参数必须是一个合法的标识符，习惯上使用单个大写字母，通常情况下，K 表示键，V 表示值，E 表示异常或错误，T 表示一般意义上的数据类型。</p>
-<p>泛型类在实例化时必须指出具体的类型，也就是向类型参数传值，格式为：<br>    className variable&lt;dataType1, dataType2&gt; = new className&lt;dataType1, dataType2&gt;();<br>也可以省略等号右边的数据类型，但是会产生警告，即：<br>    className variable&lt;dataType1, dataType2&gt; = new className();</p>
-<p>因为在使用泛型类时指明了数据类型，赋给其他类型的值会抛出异常，既不需要向下转型，也没有潜在的风险，比本文一开始介绍的自动装箱和向上转型要更加实用。</p>
-<h6 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h6><ul>
-<li>泛型是 Java 1.5 的新增特性，它以C++模板为参照，本质是参数化类型(Parameterized Type)的应用。</li>
-<li>类型参数只能用来表示引用类型，不能用来表示基本类型，如  int、double、char 等。但是传递基本类型不会报错，因为它们会自动装箱成对应的包装类。</li>
+                <h2 id="集合-List"><a href="#集合-List" class="headerlink" title="集合(List)"></a>集合(List)</h2><ul>
+<li>Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出来的<strong>Collection 和 Map</strong></li>
 </ul>
-<h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4><pre><code>// 定义泛型方法
-public &lt;T1, T2&gt; void printPoint(T1 x, T2 y){
-T1 m = x;
-T2 n = y;
-System.out.println("This point is：" + m + ", " + n);
-}</code></pre><p>类型参数需要放在修饰符后面、返回值类型前面。一旦定义了类型参数，就可以在参数列表、方法体和返回值类型中使用了。<br>与使用泛型类不同，使用泛型方法时不必指明参数类型，编译器会根据传递的参数自动查找出具体的类型。泛型方法除了定义不同，调用就像普通方法一样。 </p>
-<p><strong>注意：</strong>泛型方法与泛型类没有必然的联系，泛型方法有自己的类型参数，在普通类中也可以定义泛型方法。泛型方法 中的类型参数  与泛型类 P中的类型参数 没有必然的联系，也可以使用其他的标识符代替。</p>
-<h2 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h2><p> 在Java中也可以定义泛型接口，这里不再赘述，仅仅给出示例代码</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String arsg<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Info<span class="token operator">&lt;</span>String<span class="token operator">></span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">InfoImp</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">"www.weixueyuan.net"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Length Of String: "</span> <span class="token operator">+</span> obj<span class="token punctuation">.</span><span class="token function">getVar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//定义泛型接口</span>
-<span class="token keyword">interface</span> <span class="token class-name">Info</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> T <span class="token function">getVar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token comment" spellcheck="true">//实现接口</span>
-<span class="token keyword">class</span> <span class="token class-name">InfoImp</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">Info</span><span class="token operator">&lt;</span>T<span class="token operator">></span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> T var<span class="token punctuation">;</span>
-
-    <span class="token comment" spellcheck="true">// 定义泛型构造方法</span>
-    <span class="token keyword">public</span> <span class="token function">InfoImp</span><span class="token punctuation">(</span>T var<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setVar</span><span class="token punctuation">(</span>var<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setVar</span><span class="token punctuation">(</span>T var<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>var <span class="token operator">=</span> var<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> T <span class="token function">getVar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>var<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p> 运行结果：Length Of String: 18</p>
-<h2 id="类型擦除"><a href="#类型擦除" class="headerlink" title="类型擦除"></a>类型擦除</h2><p> 如果在使用泛型时没有指明数据类型，那么就会擦除泛型类型，请看下面的代码： </p>
-<pre><code>public class Demo {
-    public static void main(String[] args){
-        Point p = new Point();  // 类型擦除
-        p.setX(10);
-        p.setY(20.8);
-        int x = (Integer)p.getX();  // 向下转型
-        double y = (Double)p.getY();
-        System.out.println("This point is：" + x + ", " + y);
-    }
-}
-
-class Point&lt;T1, T2&gt;{
-    T1 x;
-    T2 y;
-    public T1 getX() {
-        return x;
-    }
-    public void setX(T1 x) {
-        this.x = x;
-    }
-    public T2 getY() {
-        return y;
-    }
-    public void setY(T2 y) {
-        this.y = y;
-    }
-}</code></pre><p> 运行结果：</p>
-<h2 id="限制泛型的可用类型"><a href="#限制泛型的可用类型" class="headerlink" title="限制泛型的可用类型"></a>限制泛型的可用类型</h2><p> 在上面的代码中，类型参数可以接受任意的数据类型，只要它是被定义过的。但是，很多时候我们只需要一部分数据类型就够了，用户传递其他数据类型可能会引起错误。例如，编写一个泛型函数用于返回不同类型数组（Integer 数组、Double 数组、Character 数组等）中的最大值： </p>
-<pre><code>public &lt;T&gt; T getMax(T array[]){
-    T max = null;
-    for(T element : array){
-        max = element.doubleValue() &gt; max.doubleValue() ? element : max;
-    }
-    return max;
-}</code></pre><p> 上面的代码会报错，doubleValue() 是 Number 类的方法，不是所有的类都有该方法，所以我们要限制类型参数 T，让它只能接受 Number 及其子类（Integer、Double、Character 等）。</p>
-<pre><code>public &lt;T extends Number&gt; T getMax(T array[]){
-    T max = null;
-    for(T element : array){
-        max = element.doubleValue() &gt; max.doubleValue() ? element : max;
-    }
-    return max;
-}</code></pre><p> <t extends="" number=""> 表示 T 只接受 Number 及其子类，传入其他类型的数据会报错。这里的限定使用关键字 extends，后面可以是类也可以是接口。但这里的 extends 已经不是继承的含义了，应该理解为 T 是继承自 Number 类的类型，或者 T 是实现了 XX 接口的类型。</t></p>
+<p><strong>其中Collection 存放单一元素;而Map 存放 key-value 键值对(就是单身狗放 Collection 里面，狗男女就放 Map 里)</strong><br>collection常用API：</p>
+<ul>
+<li>增: add()/addAll();</li>
+<li>删：remove()/removeAll();</li>
+<li>改：Collection Interface 里没有;查：contains()/ containsAll();</li>
+<li>其他:isEmpty(判断集合是否为空)/size(大小)/toArray(集合转数组)<h3 id="下面就具体来看："><a href="#下面就具体来看：" class="headerlink" title="下面就具体来看："></a>下面就具体来看：</h3><h4 id="增："><a href="#增：" class="headerlink" title="增："></a>增：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+add() 方法传入的数据类型必须是 Object，所以当写入基本数据类型的时候，会做自动装箱 auto-boxing 和自动拆箱 unboxing。</li>
+</ul>
+<p>还有另外一个方法 <strong>addAll()</strong>，可以把另一个集合里的元素加到此集合中。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">addAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="删："><a href="#删：" class="headerlink" title="删："></a>删：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">remove</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p><strong>remove()</strong>是删除的指定元素<br>那和 <strong>addAll()</strong> 对应的，<br>自然就有 <strong>removeAll()</strong>，就是把集合 B 中的所有元素都删掉。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">removeAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="改："><a href="#改：" class="headerlink" title="改："></a>改：</h4><p><strong>Collection Interface 里并没有直接改元素的操作，反正删和增就可以完成改了嘛！</strong></p>
+<h4 id="查："><a href="#查：" class="headerlink" title="查："></a>查：</h4><ul>
+<li>查下集合中有没有某个特定的元素：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">contains</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>查集合 A 是否包含了集合 B：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">containsAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="还有一些对集合整体的操作："><a href="#还有一些对集合整体的操作：" class="headerlink" title="还有一些对集合整体的操作："></a>还有一些对集合整体的操作：</h4></li>
+<li>判断集合是否为空：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>集合的大小：<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+<li>把集合转成数组：<pre class=" language-java"><code class="language-java">Object<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<p><strong>以上就是collection中常用的API了</strong><br><strong>collection的子类对它的实现:</strong></p>
+<ul>
+<li>List(有序,可重复的)/Set(无序,不可重复的);</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="List实现类有-ArrayList以及LinkedList"><a href="#List实现类有-ArrayList以及LinkedList" class="headerlink" title="List实现类有 ArrayList以及LinkedList"></a>List实现类有 ArrayList以及LinkedList</h3><p><strong>面试时最常问的就是这两个数据结构如何选择？</strong></p>
+<ul>
+<li>考虑:一是考虑数据结构是否能完成需要的功能;如果都能完成，二是考虑哪种更高效。</li>
+<li>改查选择,因为数组能够随机访问，所以 ArrayList 的效率高 ArrayList;</li>
+<li>增删在尾部的选择 ArrayList;</li>
+<li>其他情况下，如果时间复杂度一样，推荐选择 ArrayList，因为 overhead 更小，或者说内存使用更有效率。</li>
+</ul>
+<p><strong>Vector 和 ArrayList 的区别是什么？</strong><br>Vector它底层有很多的synchronized,因此它是线程安全的;ArrayList底层没有锁,它是线程不安全的。<br>ArrayList的扩容是通过算术右移把这个数的二进制往右移动一位，最左边补符号位，但是因为容量没有负数，所以还是补 0,它向右移动一位就是除以2,所以它的新容量是原始容量的1.5倍。<br>Vector中的capacityIncrement 我们通常并不用定义,默认情况下它是扩容两倍</p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="Queue-amp-Deque"><a href="#Queue-amp-Deque" class="headerlink" title="Queue &amp; Deque"></a>Queue &amp; Deque</h3><p>   它们的实现类: LinkedList; ArrayDeque;PriorityQueue<br>所以说，</p>
+<ul>
+<li>如果想实现「普通队列 - 先进先出」的语义，就使用 LinkedList 或者 ArrayDeque 来实现；</li>
+<li>如果想实现「优先队列」的语义，就使用 PriorityQueue；</li>
+<li>如果想实现「栈」的语义，就使用 ArrayDeque</li>
+</ul>
+<p><strong>在实现普通队列时，如何选择用 LinkedList 还是 ArrayDeque 呢？</strong></p>
+<ul>
+<li>推荐使用 ArrayDeque，因为效率高，而 LinkedList 还会有其他的额外开销</li>
+</ul>
+<p><strong>ArrayDeque 和 LinkedList 的区别有哪些呢？</strong></p>
+<ul>
+<li>ArrayDeque 是一个可扩容的数组，LinkedList 是链表结构；</li>
+<li>ArrayDeque 里不可以存 null 值，但是 LinkedList 可以；</li>
+<li>ArrayDeque 在操作头尾端的增删操作时更高效，但是 LinkedList 只有在当要移除中间某个元素且已经找到了这个元素后的移除才是 O(1) 的；</li>
+<li>ArrayDeque 在内存使用方面更高效.<br>所以,</li>
+<li>只要不是必须要存null值,就选择ArrayDeque吧！</li>
+</ul>
+<p><strong>如果是一个很资深的面试官问你，什么情况下你要选择用 LinkedList 呢？</strong></p>
+<ul>
+<li>答：Java 6 以前。。。因为 ArrayDeque 在 Java 6 之后才有的。。<br>为了版本兼容的问题，实际工作中我们不得不做一些妥协。。</li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="Set-无序-不重复的"><a href="#Set-无序-不重复的" class="headerlink" title="Set(无序,不重复的)"></a>Set(无序,不重复的)</h3><p><strong>Set的常用实现类有一下三个:</strong></p>
+<ul>
+<li>HashSet: 采用 Hashmap 的 key 来储存元素，主要特点是无序的，基本操作都是 O(1) 的时间复杂度，很快。</li>
+<li></li>
+<li>LinkedHashSet: 这个是一个 HashSet + LinkedList 的结构，特点就是既拥有了 O(1) 的时间复杂度，又能够保留插入的顺序。</li>
+<li></li>
+<li>TreeSet: 采用红黑树结构，特点是可以有序，可以用自然排序或者自定义比较器来排序；缺点就是查询速度没有 HashSet 快。</li>
+<li></li>
+<li>那每个 Set 的底层实现其实就是对应的 Map：</li>
+<li></li>
+<li>数值放在 map 中的 key 上，value 上放了个 PRESENT，是一个静态的 Object，相当于 place holder，每个 key 都指向这个 object。</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -643,7 +601,7 @@ class Point&lt;T1, T2&gt;{
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sun-little.github.io/posts/3eeb.html">https://sun-little.github.io/posts/3eeb.html</a>
+                    <a href="https://sun-little.github.io/posts/bc4b.html">https://sun-little.github.io/posts/bc4b.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -691,6 +649,10 @@ class Point&lt;T1, T2&gt;{
                             
                                 <a href="/tags/%E9%9A%8F%E7%AC%94/">
                                     <span class="chip bg-color">随笔</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                                    <span class="chip bg-color">面试</span>
                                 </a>
                             
                         </div>
@@ -1121,9 +1083,10 @@ class Point&lt;T1, T2&gt;{
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/bc4b.html">
                     <div class="card-image">
@@ -1144,9 +1107,9 @@ Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1159,6 +1122,7 @@ Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1186,7 +1150,7 @@ Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出�
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/posts/3eeb.html">
@@ -1222,7 +1186,6 @@ Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出�
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     

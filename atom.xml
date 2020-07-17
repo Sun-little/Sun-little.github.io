@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://sun-little.github.io/"/>
-  <updated>2020-06-05T09:43:58.228Z</updated>
+  <updated>2020-07-17T05:35:16.843Z</updated>
   <id>https://sun-little.github.io/</id>
   
   <author>
@@ -17,11 +17,45 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>集合(List篇)</title>
+    <link href="https://sun-little.github.io/posts/bc4b.html"/>
+    <id>https://sun-little.github.io/posts/bc4b.html</id>
+    <published>2020-07-17T04:05:57.779Z</published>
+    <updated>2020-07-17T05:35:16.843Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;集合-List&quot;&gt;&lt;a href=&quot;#集合-List&quot; class=&quot;headerlink&quot; title=&quot;集合(List)&quot;&gt;&lt;/a&gt;集合(List)&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Java 集合，也称作容器，主要是由两大接口 (Interface)
+        
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="https://sun-little.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://sun-little.github.io/tags/java/"/>
+    
+      <category term="计算机知识" scheme="https://sun-little.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="随笔" scheme="https://sun-little.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="面试" scheme="https://sun-little.github.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>泛型的使用</title>
     <link href="https://sun-little.github.io/posts/3eeb.html"/>
     <id>https://sun-little.github.io/posts/3eeb.html</id>
     <published>2020-06-03T02:27:45.800Z</published>
-    <updated>2020-06-05T09:43:58.228Z</updated>
+    <updated>2020-07-17T05:06:26.691Z</updated>
     
     <summary type="html">
     
@@ -40,6 +74,10 @@
     
     
       <category term="java" scheme="https://sun-little.github.io/tags/java/"/>
+    
+      <category term="计算机知识" scheme="https://sun-little.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="随笔" scheme="https://sun-little.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
