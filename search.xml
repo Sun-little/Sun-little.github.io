@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>集合(HashMap篇)</title>
+      <link href="/posts/31ac.html"/>
+      <url>/posts/31ac.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="集合-HashMap篇"><a href="#集合-HashMap篇" class="headerlink" title="集合(HashMap篇)"></a>集合(HashMap篇)</h2><p><strong>HashMap数据结构和底层原理？</strong><br>数据结构: </p><ul><li>由数组和链表组合构成的数据结构。</li><li>数组中每个地方<strong>都存了Key-Value</strong>这样的实例,jdk1.7叫<strong>Entry</strong>,1.8之后叫<strong>Node</strong>.</li><li>因为他本身所有的位置都为null，在put插入的时候会根据key的hash去计算一个index值。</li><li>就比如我put（”番薯“，520），我插入了为”番薯“的元素，这个时候我们会通过哈希函数计算出插入的位置，从而计算出index结果。    </li></ul><p><strong>为啥需要链表，链表又是怎么样子的呢？</strong><br>因,<br>我们都知道的<strong>数组的长度是有限的,</strong>    在有限的长度里使用哈希,它本身就<strong>存在概率性</strong>的,</p><ul><li>比如：有“番薯”“薯番”两个的值,同时进行hash,很大概率会一样,再次hash薯番在极端情况下也会hash到一个值上,这就是链表。</li><li>在Node源码中,可以看到链表的每个节点都会储存本身的key value hash 和 下一个元素。</li></ul><p><strong>你知道新的Entry节点在插入链表的时候，是怎么插入的么？</strong></p><ul><li>java8之前是头插法，就是说新来的值会取代原有的值，原有的值就顺推到链表中,这样可以提升查找的效率。</li><li>JDK1.8之后,都改成了<strong>尾插法</strong>。</li></ul><p><strong>说完扩容机制我们言归正传，为啥之前用头插法，java8之后改成尾插了呢？</strong><br>答,<br>因为resize的赋值方式，也就是使用了单链表的头插入方式，同一位置上新元素<strong>总会</strong>被放在链表的头部位置，在旧数组中同一条Entry链上的元素，通过<strong>重新</strong>计算索引位置后，有可能被放到了新数组的不同位置上。<br><strong>注意:</strong>如果这个时候去取值，悲剧就出现了——容易出现<strong>死循环(Infinite Loop)。</strong></p><p><strong>说完1.7的那1.8的尾插是怎么样的呢?</strong></p><ul><li>1.8的HashMap链表多了一个红黑树结构,</li><li>使用头插会改变链表的上的顺序，但是如果使用尾插，在扩容时会<strong>保持</strong>链表元素原本的顺序，就<strong>不会出现链表成环</strong>的问题</li><li>Java7在多线程操作HashMap时可能引起死循环，原因是扩容转移后前后链表顺序倒置，在转移过程中修改了原来链表中节点的引用关系。</li><li>Java8在同样的前提下并不会引起死循环，原因是扩容转移后前后链表顺序不变，保持之前节点的引用关系</li></ul><p><strong>那是不是意味着Java8中就可以把HashMap用在多线程中呢？</strong><br>我认为即使不会出现死循环，但是通过源码看到put/get方法都<strong>没有加同步锁</strong>,多线程情况最容易出现的就是：无法保证上一秒put的值,下一秒get的时候还是<strong>原值</strong>,所以线程安全还是无法保证。</p><p><strong>HashMap的扩容机制</strong><br>HasMap扩容机制:</p><ul><li>底层数组是有限制的,数据多次插入,超出范围,他就会进行扩容(resize)。</li></ul><p><strong>问 它什么时候扩容(resize)呢？</strong><br>考虑：Capacity：HashMap当前长度; LoadFactor：负载因子，默认值0.75f</p><ul><li>比如:当前容量是100,当你存进第76个的时候，判断发现需要进行resize了，那就进行扩容，但是HashMap的扩容也不是简单的扩大点容量这么简单的</li></ul><p>**再问 它是怎么扩容的呢？<br>分两步: </p><ul><li>扩容：创建一个新的Entry空数组，长度是原数组的2倍。</li><li>ReHash：遍历原Entry数组，把所有的Entry重新Hash到新数组。</li></ul><p><strong>三问 为什么要重新Hash呢，直接复制过去不香么？</strong><br>答：</p><ul><li>因为长度扩大以后，Hash的规则也随之改变。</li></ul><p><strong>Hash的公式—&gt; index = HashCode（Key） &amp; （Length - 1）</strong></p><ul><li>原来长度（Length）是8你位运算出来的值是2 ，新的长度是16你位运算出来的值明显不一样了。</li></ul><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+          <category> 面试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> 计算机知识 </tag>
+            
+            <tag> 随笔 </tag>
+            
+            <tag> 面试 </tag>
+            
+            <tag> 底层 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>集合(List篇)</title>
       <link href="/posts/bc4b.html"/>
       <url>/posts/bc4b.html</url>

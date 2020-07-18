@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="集合(List篇), Sun-little">
+    <meta name="keywords" content="集合(HashMap篇), Sun-little">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>集合(List篇) | Sun-little</title>
+    <title>集合(HashMap篇) | Sun-little</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">集合(List篇)</h1>
+                    <h1 class="description center-align post-title">集合(HashMap篇)</h1>
                 </div>
             </div>
         </div>
@@ -446,6 +446,10 @@
                                 <span class="chip bg-color">面试</span>
                             </a>
                         
+                            <a href="/tags/%E5%BA%95%E5%B1%82/">
+                                <span class="chip bg-color">底层</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -458,6 +462,10 @@
                                 java
                             </a>
                         
+                            <a href="/categories/java/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                面试
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -467,7 +475,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-17
+                    2020-07-18
                 </div>
                 
 
@@ -483,173 +491,52 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="集合-List"><a href="#集合-List" class="headerlink" title="集合(List)"></a>集合(List)</h2><ul>
-<li>Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出来的<strong>Collection 和 Map</strong></li>
-</ul>
-<p><strong>其中Collection 存放单一元素;而Map 存放 key-value 键值对(就是单身狗放 Collection 里面，狗男女就放 Map 里)</strong><br>collection常用API：</p>
+                <h2 id="集合-HashMap篇"><a href="#集合-HashMap篇" class="headerlink" title="集合(HashMap篇)"></a>集合(HashMap篇)</h2><p><strong>HashMap数据结构和底层原理？</strong><br>数据结构: </p>
 <ul>
-<li>增: add()/addAll();</li>
-<li>删：remove()/removeAll();</li>
-<li>改：Collection Interface 里没有;查：contains()/ containsAll();</li>
-<li>其他:isEmpty(判断集合是否为空)/size(大小)/toArray(集合转数组)<h3 id="下面就具体来看："><a href="#下面就具体来看：" class="headerlink" title="下面就具体来看："></a>下面就具体来看：</h3><h4 id="增："><a href="#增：" class="headerlink" title="增："></a>增：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-add() 方法传入的数据类型必须是 Object，所以当写入基本数据类型的时候，会做自动装箱 auto-boxing 和自动拆箱 unboxing。</li>
+<li>由数组和链表组合构成的数据结构。</li>
+<li>数组中每个地方<strong>都存了Key-Value</strong>这样的实例,jdk1.7叫<strong>Entry</strong>,1.8之后叫<strong>Node</strong>.</li>
+<li>因为他本身所有的位置都为null，在put插入的时候会根据key的hash去计算一个index值。</li>
+<li>就比如我put（”番薯“，520），我插入了为”番薯“的元素，这个时候我们会通过哈希函数计算出插入的位置，从而计算出index结果。    </li>
 </ul>
-<p>还有另外一个方法 <strong>addAll()</strong>，可以把另一个集合里的元素加到此集合中。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">addAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h4 id="删："><a href="#删：" class="headerlink" title="删："></a>删：</h4><pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">remove</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<p><strong>remove()</strong>是删除的指定元素<br>那和 <strong>addAll()</strong> 对应的，<br>自然就有 <strong>removeAll()</strong>，就是把集合 B 中的所有元素都删掉。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">removeAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h4 id="改："><a href="#改：" class="headerlink" title="改："></a>改：</h4><p><strong>Collection Interface 里并没有直接改元素的操作，反正删和增就可以完成改了嘛！</strong></p>
-<h4 id="查："><a href="#查：" class="headerlink" title="查："></a>查：</h4><ul>
-<li>查下集合中有没有某个特定的元素：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">contains</span><span class="token punctuation">(</span>Object o<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li>查集合 A 是否包含了集合 B：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">containsAll</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> c<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h4 id="还有一些对集合整体的操作："><a href="#还有一些对集合整体的操作：" class="headerlink" title="还有一些对集合整体的操作："></a>还有一些对集合整体的操作：</h4></li>
-<li>判断集合是否为空：<pre class=" language-java"><code class="language-java"><span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li>集合的大小：<pre class=" language-java"><code class="language-java"><span class="token keyword">int</span> <span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-<li>把集合转成数组：<pre class=" language-java"><code class="language-java">Object<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-</li>
-</ul>
-<p><strong>以上就是collection中常用的API了</strong><br><strong>collection的子类对它的实现:</strong></p>
+<p><strong>为啥需要链表，链表又是怎么样子的呢？</strong><br>因,<br>我们都知道的<strong>数组的长度是有限的,</strong>    在有限的长度里使用哈希,它本身就<strong>存在概率性</strong>的,</p>
 <ul>
-<li>List(有序,可重复的)/Set(无序,不可重复的);</li>
+<li>比如：有“番薯”“薯番”两个的值,同时进行hash,很大概率会一样,再次hash薯番在极端情况下也会hash到一个值上,这就是链表。</li>
+<li>在Node源码中,可以看到链表的每个节点都会储存本身的key value hash 和 下一个元素。</li>
 </ul>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="List实现类有-ArrayList以及LinkedList"><a href="#List实现类有-ArrayList以及LinkedList" class="headerlink" title="List实现类有 ArrayList以及LinkedList"></a>List实现类有 ArrayList以及LinkedList</h3><p><strong>面试时最常问的就是这两个数据结构如何选择？</strong></p>
+<p><strong>你知道新的Entry节点在插入链表的时候，是怎么插入的么？</strong></p>
 <ul>
-<li>考虑:一是考虑数据结构是否能完成需要的功能;如果都能完成，二是考虑哪种更高效。</li>
-<li>改查选择,因为数组能够随机访问，所以 ArrayList 的效率高 ArrayList;</li>
-<li>增删在尾部的选择 ArrayList;</li>
-<li>其他情况下，如果时间复杂度一样，推荐选择 ArrayList，因为 overhead 更小，或者说内存使用更有效率。</li>
+<li>java8之前是头插法，就是说新来的值会取代原有的值，原有的值就顺推到链表中,这样可以提升查找的效率。</li>
+<li>JDK1.8之后,都改成了<strong>尾插法</strong>。</li>
 </ul>
-<h2 id="List-去重"><a href="#List-去重" class="headerlink" title="List(去重)"></a>List(去重)</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Pratice05</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>Worker<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Worker<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"zhang3"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">3000.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"li4"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">3500.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"li4"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">3500.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wang5"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">3200.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wang5"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">3200.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//去除重复元素（普通for,迭代器，集合都要重写equals方法）</span>
-
-        <span class="token comment" spellcheck="true">//方法一：普通for(选择排序思想==选择对比去重) </span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">+</span> i<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    list<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    j<span class="token operator">--</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//方法三：迭代器</span>
-        ListIterator<span class="token operator">&lt;</span>Worker<span class="token operator">></span> lis <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">listIterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        ArrayList<span class="token operator">&lt;</span>Worker<span class="token operator">></span> newlist <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Worker<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>lis<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Worker w <span class="token operator">=</span> lis<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>newlist<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                newlist<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>w<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        list <span class="token operator">=</span> newlist<span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//方法四 :创建新集合，for</span>
-        ArrayList<span class="token operator">&lt;</span>Worker<span class="token operator">></span> newlist2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Worker<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Worker worker <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>newlist2<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>worker<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                newlist2<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>worker<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        list <span class="token operator">=</span> newlist2<span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//方法二：利用hashset去除重复元素（重写equals方法）</span>
-        <span class="token function">removeDuplist</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> List<span class="token operator">&lt;</span>Worker<span class="token operator">></span> <span class="token function">removeDuplist</span><span class="token punctuation">(</span>List<span class="token operator">&lt;</span>Worker<span class="token operator">></span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        HashSet<span class="token operator">&lt;</span>Worker<span class="token operator">></span> hs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span>Worker<span class="token operator">></span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>hs<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span></code></pre>
-<h2 id="List-遍历"><a href="#List-遍历" class="headerlink" title="List(遍历)"></a>List(遍历)</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Pratice04</span> <span class="token punctuation">{</span>
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>Worker<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Worker<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"zhang3"</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token number">3000.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"li4"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">3500.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"li4"</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">3500.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wang5"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">3200.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wang5"</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">3200.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//2)在li4之前插入一个工人，信息为：姓名：zhao6，年龄：24，工资3300</span>
-        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"zhao6"</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">3600.0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Worker worker <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>worker<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"====================="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//3)删除wang5的信息</span>
-        list<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token comment" spellcheck="true">//4利用for循环遍历,打印List中所有工人的信息</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Worker worker <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>worker<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"====================="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//方法二：</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Iterator<span class="token operator">&lt;</span>Worker<span class="token operator">></span> it <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>it<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"====================="</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//利用迭代遍历，对List中所有的工人调用work方法。</span>
-        Iterator<span class="token operator">&lt;</span>Worker<span class="token operator">></span> iterator <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">iterator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">hasNext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            Worker w <span class="token operator">=</span> iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            w<span class="token punctuation">.</span><span class="token function">work</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>Worker worker <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            worker<span class="token punctuation">.</span><span class="token function">work</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p><strong>Vector 和 ArrayList 的区别是什么？</strong><br>Vector它底层有很多的synchronized,因此它是线程安全的;ArrayList底层没有锁,它是线程不安全的。<br>ArrayList的扩容是通过算术右移把这个数的二进制往右移动一位，最左边补符号位，但是因为容量没有负数，所以还是补 0,它向右移动一位就是除以2,所以它的新容量是原始容量的1.5倍。<br>Vector中的capacityIncrement 我们通常并不用定义,默认情况下它是扩容两倍</p>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h3 id="Queue-amp-Deque"><a href="#Queue-amp-Deque" class="headerlink" title="Queue &amp; Deque"></a>Queue &amp; Deque</h3><p>   它们的实现类: LinkedList; ArrayDeque;PriorityQueue<br>所以说，</p>
+<p><strong>说完扩容机制我们言归正传，为啥之前用头插法，java8之后改成尾插了呢？</strong><br>答,<br>因为resize的赋值方式，也就是使用了单链表的头插入方式，同一位置上新元素<strong>总会</strong>被放在链表的头部位置，在旧数组中同一条Entry链上的元素，通过<strong>重新</strong>计算索引位置后，有可能被放到了新数组的不同位置上。<br><strong>注意:</strong>如果这个时候去取值，悲剧就出现了——容易出现<strong>死循环(Infinite Loop)。</strong></p>
+<p><strong>说完1.7的那1.8的尾插是怎么样的呢?</strong></p>
 <ul>
-<li>如果想实现「普通队列 - 先进先出」的语义，就使用 LinkedList 或者 ArrayDeque 来实现；</li>
-<li>如果想实现「优先队列」的语义，就使用 PriorityQueue；</li>
-<li>如果想实现「栈」的语义，就使用 ArrayDeque</li>
+<li>1.8的HashMap链表多了一个红黑树结构,</li>
+<li>使用头插会改变链表的上的顺序，但是如果使用尾插，在扩容时会<strong>保持</strong>链表元素原本的顺序，就<strong>不会出现链表成环</strong>的问题</li>
+<li>Java7在多线程操作HashMap时可能引起死循环，原因是扩容转移后前后链表顺序倒置，在转移过程中修改了原来链表中节点的引用关系。</li>
+<li>Java8在同样的前提下并不会引起死循环，原因是扩容转移后前后链表顺序不变，保持之前节点的引用关系</li>
 </ul>
-<p><strong>在实现普通队列时，如何选择用 LinkedList 还是 ArrayDeque 呢？</strong></p>
+<p><strong>那是不是意味着Java8中就可以把HashMap用在多线程中呢？</strong><br>我认为即使不会出现死循环，但是通过源码看到put/get方法都<strong>没有加同步锁</strong>,多线程情况最容易出现的就是：无法保证上一秒put的值,下一秒get的时候还是<strong>原值</strong>,所以线程安全还是无法保证。</p>
+<p><strong>HashMap的扩容机制</strong><br>HasMap扩容机制:</p>
 <ul>
-<li>推荐使用 ArrayDeque，因为效率高，而 LinkedList 还会有其他的额外开销</li>
+<li>底层数组是有限制的,数据多次插入,超出范围,他就会进行扩容(resize)。</li>
 </ul>
-<p><strong>ArrayDeque 和 LinkedList 的区别有哪些呢？</strong></p>
+<p><strong>问 它什么时候扩容(resize)呢？</strong><br>考虑：Capacity：HashMap当前长度; LoadFactor：负载因子，默认值0.75f</p>
 <ul>
-<li>ArrayDeque 是一个可扩容的数组，LinkedList 是链表结构；</li>
-<li>ArrayDeque 里不可以存 null 值，但是 LinkedList 可以；</li>
-<li>ArrayDeque 在操作头尾端的增删操作时更高效，但是 LinkedList 只有在当要移除中间某个元素且已经找到了这个元素后的移除才是 O(1) 的；</li>
-<li>ArrayDeque 在内存使用方面更高效.<br>所以,</li>
-<li>只要不是必须要存null值,就选择ArrayDeque吧！</li>
+<li>比如:当前容量是100,当你存进第76个的时候，判断发现需要进行resize了，那就进行扩容，但是HashMap的扩容也不是简单的扩大点容量这么简单的</li>
 </ul>
-<p><strong>如果是一个很资深的面试官问你，什么情况下你要选择用 LinkedList 呢？</strong></p>
+<p>**再问 它是怎么扩容的呢？<br>分两步: </p>
 <ul>
-<li>答：Java 6 以前。。。因为 ArrayDeque 在 Java 6 之后才有的。。<br>为了版本兼容的问题，实际工作中我们不得不做一些妥协。。</li>
+<li>扩容：创建一个新的Entry空数组，长度是原数组的2倍。</li>
+<li>ReHash：遍历原Entry数组，把所有的Entry重新Hash到新数组。</li>
 </ul>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="Set-无序-不重复的"><a href="#Set-无序-不重复的" class="headerlink" title="Set(无序,不重复的)"></a>Set(无序,不重复的)</h3><p><strong>Set的常用实现类有一下三个:</strong></p>
+<p><strong>三问 为什么要重新Hash呢，直接复制过去不香么？</strong><br>答：</p>
 <ul>
-<li>HashSet: 采用 Hashmap 的 key 来储存元素，主要特点是无序的，基本操作都是 O(1) 的时间复杂度，很快。</li>
-<li></li>
-<li>LinkedHashSet: 这个是一个 HashSet + LinkedList 的结构，特点就是既拥有了 O(1) 的时间复杂度，又能够保留插入的顺序。</li>
-<li></li>
-<li>TreeSet: 采用红黑树结构，特点是可以有序，可以用自然排序或者自定义比较器来排序；缺点就是查询速度没有 HashSet 快。</li>
-<li></li>
-<li>那每个 Set 的底层实现其实就是对应的 Map：</li>
-<li></li>
-<li>数值放在 map 中的 key 上，value 上放了个 PRESENT，是一个静态的 Object，相当于 place holder，每个 key 都指向这个 object。</li>
+<li>因为长度扩大以后，Hash的规则也随之改变。</li>
+</ul>
+<p><strong>Hash的公式—&gt; index = HashCode（Key） &amp; （Length - 1）</strong></p>
+<ul>
+<li>原来长度（Length）是8你位运算出来的值是2 ，新的长度是16你位运算出来的值明显不一样了。</li>
 </ul>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -694,7 +581,7 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sun-little.github.io/posts/bc4b.html">https://sun-little.github.io/posts/bc4b.html</a>
+                    <a href="https://sun-little.github.io/posts/31ac.html">https://sun-little.github.io/posts/31ac.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -746,6 +633,10 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                             
                                 <a href="/tags/%E9%9D%A2%E8%AF%95/">
                                     <span class="chip bg-color">面试</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BA%95%E5%B1%82/">
+                                    <span class="chip bg-color">底层</span>
                                 </a>
                             
                         </div>
@@ -1176,9 +1067,10 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/31ac.html">
                     <div class="card-image">
@@ -1200,9 +1092,9 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-18
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1219,6 +1111,7 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1253,26 +1146,27 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/3eeb.html">
+                <a href="/posts/bc4b.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="泛型的使用">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="集合(List篇)">
                         
-                        <span class="card-title">泛型的使用</span>
+                        <span class="card-title">集合(List篇)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            泛型：​        泛指的类型，可以代表任意类的   可以在类的后面指定泛型 public class 类名 &lt;泛型&gt;
-​        在类上面定义了泛型后，可以在当前类中的任意位置使用当前泛型，可以在属性的类型，参数
-​
+                            集合(List)
+Java 集合，也称作容器，主要是由两大接口 (Interface) 派生出来的Collection 和 Map
+
+其中Collection 存放单一元素;而Map 存放 key-value 键值对(就是单身狗放 Coll
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
                             </span>
                         <span class="publish-author">
                             
@@ -1299,6 +1193,10 @@ add() 方法传入的数据类型必须是 Object，所以当写入基本数据�
                     
                     <a href="/tags/%E9%9A%8F%E7%AC%94/">
                         <span class="chip bg-color">随笔</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%9D%A2%E8%AF%95/">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
                 </div>
